@@ -113,7 +113,7 @@ dependencies {
     implementation ("com.vanniktech:android-image-cropper:4.5.0")
 
 
-    val nav_version = "2.8.5"
+    val nav_version = "2.9.0"
 
     // Jetpack Compose integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
