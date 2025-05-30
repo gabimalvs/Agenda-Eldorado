@@ -9,14 +9,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.example.agendadefinitiva.database.AppDatabase
+import com.example.agendadefinitiva.database.EventRepository
 import com.example.agendadefinitiva.databinding.ActivityMainBinding
 import com.example.agendadefinitiva.navGraph.NavGraph
+import com.example.agendadefinitiva.viewmodel.EventViewModel
 
 class MainActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val database = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "app_database"
+        ).build()
+
+        val repository = EventRepository(database.eventDao())
+
+        val factory = EventViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
+
         setContent {
             MaterialTheme {
                 NavGraph()
