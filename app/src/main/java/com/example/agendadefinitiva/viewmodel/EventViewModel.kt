@@ -1,6 +1,8 @@
+// EventViewModel.kt
 package com.example.agendadefinitiva.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.agendadefinitiva.database.EventEntity
 import com.example.agendadefinitiva.database.EventRepository
@@ -16,15 +18,33 @@ class EventViewModel(private val repository: EventRepository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            repository.allEvents.collectLatest {
-                _events.value = it
+            repository.allEvents.collectLatest { eventList ->
+                _events.value = eventList
             }
         }
     }
 
-    fun addEvent(title: String, description: String) {
+    fun addEvent(event: EventEntity) {
         viewModelScope.launch {
-            repository.addEvent(EventEntity(title = title, description = description))
+            repository.addEvent(event)
         }
+    }
+
+    fun deleteEvent(event: EventEntity) {
+        viewModelScope.launch {
+            repository.removeEvent(event)
+        }
+    }
+
+
+}
+
+class EventViewModelFactory(private val repository: EventRepository) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(EventViewModel::class.java)) {
+            return EventViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

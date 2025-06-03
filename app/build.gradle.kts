@@ -109,6 +109,8 @@ dependencies {
 
     implementation("androidx.exifinterface:exifinterface:1.3.7")
 
+    implementation ("androidx.compose.material3:material3:1.3.2")
+
 
     implementation ("com.vanniktech:android-image-cropper:4.5.0")
 

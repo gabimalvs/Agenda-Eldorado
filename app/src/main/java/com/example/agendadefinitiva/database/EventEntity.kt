@@ -7,5 +7,10 @@ import androidx.room.PrimaryKey
 data class EventEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
-    val description: String
+    val description: String,
+    val type: String,
+    val people: String,
+    val timeStart: Long,
+    val timeEnd: Long,
+    val status: String
 )
