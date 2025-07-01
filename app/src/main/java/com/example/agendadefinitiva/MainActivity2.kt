@@ -11,6 +11,13 @@ import com.example.agendadefinitiva.database.EventRepository
 import com.example.agendadefinitiva.navGraph.NavGraph
 import com.example.agendadefinitiva.viewmodel.EventViewModel
 import com.example.agendadefinitiva.viewmodel.EventViewModelFactory
+import android.app.Activity
+import android.app.DatePickerDialog
+import android.content.Context
+import android.widget.Toast
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity2 : AppCompatActivity() {
     private lateinit var viewModel: EventViewModel
@@ -35,5 +42,25 @@ class MainActivity2 : AppCompatActivity() {
                 NavGraph(viewModel)
             }
         }
+    }
+}
+
+
+fun openDatePicker(context: Context, onDateSelected: (String) -> Unit) {
+    val datePicker = MaterialDatePicker.Builder.datePicker()
+        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+        .build()
+
+    datePicker.addOnPositiveButtonClickListener { selection ->
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = selection
+        val formattedDate = String.format("%02d/%02d/%04d", calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR))
+        onDateSelected(formattedDate)
+    }
+
+    if (context is AppCompatActivity) {
+        datePicker.show(context.supportFragmentManager, datePicker.toString())
+    } else {
+        Toast.makeText(context, "Erro ao exibir o seletor de data", Toast.LENGTH_SHORT).show()
     }
 }

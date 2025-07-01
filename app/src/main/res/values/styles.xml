@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomCalendarTheme" parent="Theme.MaterialComponents.Light">
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#888888</item>
+        <item name="android:focusedMonthDateColor">#000000</item>
+        <item name="android:unfocusedMonthDateColor">#888888</item>
+        <item name="android:selectedWeekBackgroundColor">#DDDDDD</item>
+        <item name="android:weekSeparatorLineColor">#CCCCCC</item>
+    </style>
+</resources>

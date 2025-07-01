@@ -47,8 +47,8 @@ fun EventDetailScreen(navController: NavController, event: EventEntity) {
             Text(text = "Type: ${event.type}")
             Text(text = "People: ${event.people}")
             Text(text = "Status: ${event.status}")
-            Text(text = "Start Time: ${formatTimestamp(event.timeStart)}")
-            Text(text = "End Time: ${formatTimestamp(event.timeEnd)}")
+            Text(text = "Start Date and Time: ${formatTimestamp(event.timeStart)}")
+            Text(text = "End Date and Time: ${formatTimestamp(event.timeEnd)}")
         }
     }
 }

@@ -86,7 +86,6 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
     // Optional - Integration with RxJava
     implementation("androidx.compose.runtime:runtime-rxjava2")
-
 }
 
 dependencies {
@@ -110,6 +109,8 @@ dependencies {
     implementation("androidx.exifinterface:exifinterface:1.3.7")
 
     implementation ("androidx.compose.material3:material3:1.3.2")
+
+    implementation ("com.google.android.material:material:1.6.1")
 
 
     implementation ("com.vanniktech:android-image-cropper:4.5.0")
@@ -145,6 +146,7 @@ dependencies {
 }
 
 dependencies {
+    implementation(libs.ads.mobile.sdk)
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.gpu)
     implementation(libs.tensorflow.lite.metadata)
